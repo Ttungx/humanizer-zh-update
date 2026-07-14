@@ -28,14 +28,25 @@ npx skills add https://github.com/Ttungx/humanizer-zh-update.git
 
 这是最简单的安装方式，会自动将技能安装到正确的目录。
 
-### 方法二：通过 Git 克隆
+### 方法二：Claude Code 插件
+
+Claude Code 用户也可以作为插件安装：
+
+```
+/plugin marketplace add Ttungx/humanizer-zh-update
+/plugin install humanizer-zh-update@humanizer-zh-update
+```
+
+技能将以 `/humanizer-zh-update:humanizer-zh-update` 方式调用。
+
+### 方法三：通过 Git 克隆
 
 ```bash
 # 克隆到 skills 目录
 git clone https://github.com/Ttungx/humanizer-zh-update.git ~/.claude/skills/humanizer-zh-update
 ```
 
-### 方法三：手动安装
+### 方法四：手动安装
 
 1. 下载本项目的 ZIP 文件或克隆到本地
 2. 将文件夹复制到 skills 目录：
@@ -45,8 +56,13 @@ git clone https://github.com/Ttungx/humanizer-zh-update.git ~/.claude/skills/hum
 3. 确保文件夹结构如下：
    ```
    ~/.claude/skills/humanizer-zh-update/
-   ├── SKILL.md       # 技能定义文件（中文版）
-   └── README.md      # 说明文档
+   ├── AGENTS.md                        # Agent 维护指南
+   ├── SKILL.md                         # 技能定义文件（中文版）
+   ├── README.md                        # 说明文档
+   ├── LICENSE                          # MIT 许可
+   └── .claude-plugin/
+       ├── plugin.json                  # Claude Code 插件清单
+       └── marketplace.json             # 市场入口清单
    ```
 
 ## 使用
@@ -202,6 +218,16 @@ git clone https://github.com/Ttungx/humanizer-zh-update.git ~/.claude/skills/hum
 - 与……保持一致、致力于、坐落于
 - 位于……的中心、开创性的、令人叹为观止的
 
+## 文件说明
+
+- **`SKILL.md`** — 技能本体，唯一的真相来源。包含 YAML frontmatter、33 种 AI 写作模式（附改写前/改写后示例）、语音校准、检测指南、处理流程、质量评分和完整示例。
+- **`README.md`** — 面向人类读者：安装方法、使用方式、模式汇总表和版本历史。
+- **`AGENTS.md`** — 面向 AI 编码 Agent（Claude Code、Codex、Warp 等）的仓库维护指南，包含 SKILL.md 与 README.md 的同步规则及中文翻译注意事项。
+- **`.claude-plugin/plugin.json`** — Claude Code 插件清单。
+- **`.claude-plugin/marketplace.json`** — 单仓库市场入口。
+
+**注：** 英文原版请参考 [blader/humanizer](https://github.com/blader/humanizer)
+
 ## 贡献
 
 如果你发现翻译问题或想要改进文档，欢迎提交 Issue 或 Pull Request。
@@ -221,6 +247,12 @@ git clone https://github.com/Ttungx/humanizer-zh-update.git ~/.claude/skills/hum
 - [blader/humanizer](https://github.com/blader/humanizer) - 原始英文版项目
 - [op7418/Humanizer-zh](https://github.com/op7418/Humanizer-zh) - 旧版中文翻译
 - [hardikpandya/stop-slop](https://github.com/hardikpandya/stop-slop) - 实用工具部分的灵感来源
+
+## 版本历史
+
+- **3.0.0** — 基于英文原版 humanizer v2.8.2 的完整中文翻译。覆盖全部 33 种 AI 写作模式（旧版中文翻译仅 24 种）。新增语音校准、检测指南（12 类误报排除 + 7 类人类写作特征）、草稿-审计-终稿三轮工作流、段落对等原则、里斯本旅行完整示例。保留旧版中文特色：核心规则速查、快速检查清单、质量评分表。添加 .claude-plugin 清单和 AGENTS.md 维护指南。
+- 旧版中文翻译请参考 [op7418/Humanizer-zh](https://github.com/op7418/Humanizer-zh)。
+- 英文原版版本历史请参考 [blader/humanizer](https://github.com/blader/humanizer#version-history)。
 
 ## 许可
 
