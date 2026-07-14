@@ -1,0 +1,14 @@
+{
+  "$schema": "https://json.schemastore.org/claude-code-plugin-manifest.json",
+  "name": "humanizer-zh-update",
+  "description": "去除文本中的 AI 生成痕迹，使其更自然、更像人类书写。基于维基百科\"AI 写作特征\"指南的中文更新版，覆盖 33 种模式。",
+  "version": "3.0.0",
+  "author": {
+    "name": "Ttungx",
+    "url": "https://github.com/Ttungx"
+  },
+  "homepage": "https://github.com/Ttungx/humanizer-zh-update",
+  "repository": "https://github.com/Ttungx/humanizer-zh-update",
+  "license": "MIT",
+  "keywords": ["writing", "editing", "ai-detection", "humanize", "prose", "style", "chinese", "zh"]
+}
