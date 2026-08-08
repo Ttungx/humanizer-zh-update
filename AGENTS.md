@@ -14,6 +14,9 @@ Guidance for AI coding agents (Claude Code, Codex, Warp, etc.) working in this r
 - `README.md` — 面向人类读者：安装方法、使用方式、模式汇总表和版本历史。
 - `.claude-plugin/plugin.json` — 可选的 Claude Code 插件清单。
 - `.claude-plugin/marketplace.json` — 可选的单仓库市场入口，使 `/plugin marketplace add Ttungx/humanizer-zh-update` 可用。
+- `scripts/validate-package.py` — 包一致性校验脚本（版本三联同步、33 模式完整性、500 行预算）。
+- `.github/workflows/validate.yml` — PR 和 push 到 main 时运行校验。
+- `.github/workflows/release.yml` — 推送 `v*` tag 时自动创建 GitHub Release。
 
 ## The maintenance contract
 
@@ -30,3 +33,15 @@ Guidance for AI coding agents (Claude Code, Codex, Warp, etc.) working in this r
 - frontmatter 之后的提示是产品本身。像编辑一份严谨的说明文档那样编辑它，而非像编辑代码。
 - 翻译注意事项：示例文本中"改写前"展示的是典型的 AI 生成中文表达，"改写后"展示的是更自然的人类表达。修改示例时请确保"改写前"确实包含该模式的问题，"改写后"确实解决了该问题。
 - 中文语境标注：对于在中文中不太适用或表现不同的模式（如标题大小写、连字符词对、弯引号），保留"注"说明。新增模式时考虑是否需要类似的中文适配说明。
+
+## 发版流程
+
+发布新版本按以下顺序操作：
+
+1. 同步更新三处版本号（`SKILL.md` 的 `metadata.version`、`README.md` 版本历史新增条目、`.claude-plugin/plugin.json` 的 `version`）。
+2. 本地运行 `python scripts/validate-package.py` 确认通过。
+3. 提交并推送到 main（validate 工作流会再跑一遍校验）。
+4. 打与版本号一致的 tag 并推送：`git tag -a vX.Y.Z -m "..." && git push origin vX.Y.Z`。
+5. release 工作流自动校验 tag 与包版本一致、从 README 版本历史提取发布说明并创建 GitHub Release。
+
+tag 版本号必须与包版本完全一致，否则 release 工作流会失败。
